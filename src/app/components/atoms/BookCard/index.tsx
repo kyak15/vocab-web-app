@@ -24,12 +24,9 @@ export default function BookCard({
         "gap-3 sm:gap-4",
       ].join(" ")}
     >
-      {/* Left: image + info */}
       <div className="flex w-full sm:w-auto items-start gap-3 sm:gap-4">
-        {/* 👇 Book image */}
         <BookImage thumbnail={thumbnail} size="md" />
 
-        {/* 👇 Text info — stays top-aligned with image */}
         <div className="flex flex-col justify-start">
           <div className="text-base sm:text-xl lg:text-2xl font-semibold leading-snug">
             {title}
@@ -40,7 +37,7 @@ export default function BookCard({
             3 Words Learned • {word_count} Words Saved
           </div>
 
-          {/* (Optional) progress bar */}
+          {/*  progress bar */}
           {/* <div className="mt-2 h-2 w-full max-w-xs bg-gray-200 rounded">
             <div className="h-full w-1/3 bg-blue-600 rounded"></div>
           </div> */}
@@ -51,7 +48,6 @@ export default function BookCard({
         </div>
       </div>
 
-      {/* Right: created date (desktop only) */}
       <div className="hidden sm:block text-sm lg:text-md text-gray-600 shrink-0">
         Created: {fixedDate}
       </div>

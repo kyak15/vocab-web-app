@@ -1,5 +1,5 @@
 type PartOfSpeechPillProps = {
-  pos: string;
+  pos?: string;
 };
 
 export default function PartOfSpeechPill({ pos }: PartOfSpeechPillProps) {
@@ -23,7 +23,7 @@ export default function PartOfSpeechPill({ pos }: PartOfSpeechPillProps) {
   }
   return (
     <div
-      className={`rounded-lg px-3 py-1 text-white text-center my-2 ${pillColor}`}
+      className={`rounded-lg px-2 py-1 text-white text-center my-3 ${pillColor}`}
     >
       {pos}
     </div>

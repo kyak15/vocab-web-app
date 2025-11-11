@@ -127,11 +127,48 @@ export async function addWord({
 
     if (error) throw error;
 
-    console.log("✅ Word added successfully:", data);
     return { success: true, data };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     console.error("❌ Error adding word:", err.message);
     return { success: false, error: err.message };
+  }
+}
+
+export async function getBookById(id: number) {
+  try {
+    const { data, error } = await supabase.rpc("get_book_by_id", {
+      p_id: id,
+    });
+    if (error) throw error;
+
+    console.log("fetched book: ", data);
+    return {
+      success: true,
+      data,
+    };
+  } catch (err) {
+    console.error("Error fertching book: ", err.message);
+    return { success: false, error: err.message };
+  }
+}
+
+export async function getWordsFromBook(id: number) {
+  try {
+    const { data, error } = await supabase.rpc("get_words_from_book", {
+      p_id: id,
+    });
+
+    if (error) throw error;
+    return {
+      success: true,
+      data,
+    };
+  } catch (error) {
+    console.error("Error Fetching Words from Book");
+    return {
+      success: false,
+      error: error.message,
+    };
   }
 }

@@ -31,8 +31,9 @@ export type SavedWord = {
   word: string;
   definition: string;
   phonetic?: string;
-  partOfSpeech?: string;
+  part_of_speech?: string;
   createdAt: string;
+  is_learned: boolean;
 };
 
 export type SearchedBook = {

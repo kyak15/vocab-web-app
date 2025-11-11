@@ -1,12 +1,21 @@
 type WordHeaderProps = {
   word: string;
   audioUrl?: string;
+  isLearned?: boolean;
 };
 
-export default function WordHeader({ word, audioUrl }: WordHeaderProps) {
+export default function WordHeader({
+  word,
+  audioUrl,
+  isLearned,
+}: WordHeaderProps) {
   return (
     <div className="flex flex-row justify-between items-center px-2 pb-3 pt-3">
-      <h2 className="text-xl lg:text-3xl">{word}</h2>
+      <h2
+        className={`text-xl lg:text-3xl ${isLearned ? "text-green-600" : ""}`}
+      >
+        {word}
+      </h2>
 
       {audioUrl && (
         <audio controls className="h-6 w-1/2">

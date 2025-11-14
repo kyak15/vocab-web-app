@@ -21,13 +21,12 @@ export default function SearchedWordComp({
 }) {
   const [selected, setSelected] = useState<SelectedPayload>(null);
 
-  console.log(userWord);
-
   const handlePick = (args: {
     partOfSpeech: string;
     definition: string;
     example?: string;
   }) => {
+    if (!userWord) return; // guard against null
     setSelected({
       word: userWord.word,
       partOfSpeech: args.partOfSpeech,

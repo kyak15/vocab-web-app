@@ -1,4 +1,5 @@
 import BookStorage from "../../molecules/BookStorage";
+import RecentlyAddedWords from "../../molecules/RecentlyAddedWords";
 
 export default async function HomeOrganism() {
   return (
@@ -8,7 +9,7 @@ export default async function HomeOrganism() {
       </div>
 
       <div className="bg-gray-800 flex-1 border-2 border-black rounded-lg m-6 py-4">
-        hi
+        <RecentlyAddedWords />
       </div>
     </div>
   );

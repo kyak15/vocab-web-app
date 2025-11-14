@@ -3,7 +3,7 @@
 import { useState } from "react";
 import WordHeader from "../WordHeader";
 import PartOfSpeechPill from "../PartOfSpeechPill";
-import { addWord } from "@/app/utils/helpers/helpers";
+import { addWord } from "@/app/api/word/word";
 import { Meaning, SearchedWord } from "@/app/types/types";
 
 type SelectedPayload = {
@@ -20,7 +20,6 @@ export default function SearchedWordComp({
   userWord: SearchedWord | null;
 }) {
   const [selected, setSelected] = useState<SelectedPayload>(null);
-  if (!userWord) return null;
 
   console.log(userWord);
 
@@ -41,6 +40,10 @@ export default function SearchedWordComp({
   const handleSubmit = async () => {
     if (selected) await addWord(selected);
   };
+
+  if (userWord === null) {
+    return <div>Failed to find word</div>;
+  }
 
   return (
     <div className="flex flex-col h-full">

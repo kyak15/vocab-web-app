@@ -10,7 +10,6 @@ import SearchModal from "../SearchModal";
 const NAV_LINKS = [
   { href: "/flashcard", label: "Flashcards" },
   { href: "/stats", label: "Stats" },
-  { href: "/profile", label: "Profile" },
 ];
 
 export default function TopNavBar() {

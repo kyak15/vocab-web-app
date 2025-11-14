@@ -10,9 +10,9 @@ export default function WordHeader({
   isLearned,
 }: WordHeaderProps) {
   return (
-    <div className="flex flex-row justify-between items-center px-2 pb-3 pt-3">
+    <div className="flex flex-row justify-between items-center pb-3 pt-3">
       <h2
-        className={`text-xl lg:text-3xl ${isLearned ? "text-green-600" : ""}`}
+        className={`text-xl lg:text-3xl ${isLearned ? "text-green-600" : "text-black"}`}
       >
         {word}
       </h2>

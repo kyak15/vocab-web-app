@@ -8,7 +8,7 @@ import { useState } from "react";
 import SearchModal from "../SearchModal";
 
 const NAV_LINKS = [
-  { href: "/flashcard", label: "Flashcards" },
+  { href: "/flashcards", label: "Flashcards" },
   { href: "/stats", label: "Stats" },
 ];
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import WordHeader from "../WordHeader";
 import PartOfSpeechPill from "../PartOfSpeechPill";
 import { addWord } from "@/app/api/word/word";
-import { Meaning, SearchedWord } from "@/app/types/types";
+import { DictionaryResponse } from "@/app/types/types";
 
 type SelectedPayload = {
   word: string;
@@ -17,7 +17,7 @@ type SelectedPayload = {
 export default function SearchedWordComp({
   userWord,
 }: {
-  userWord: SearchedWord | null;
+  userWord: DictionaryResponse | null;
 }) {
   const [selected, setSelected] = useState<SelectedPayload>(null);
 
@@ -27,12 +27,13 @@ export default function SearchedWordComp({
     example?: string;
   }) => {
     if (!userWord) return; // guard against null
+    const audioUrl = userWord.phonetics?.find((p) => p.audio)?.audio;
     setSelected({
       word: userWord.word,
       partOfSpeech: args.partOfSpeech,
       definition: args.definition,
       example: args.example,
-      audioUrl: userWord.audioUrl,
+      audioUrl: audioUrl,
     });
   };
 
@@ -44,16 +45,18 @@ export default function SearchedWordComp({
     return <div>Failed to find word</div>;
   }
 
+  const audioUrl = userWord.phonetics?.find((p) => p.audio)?.audio;
+
   return (
     <div className="flex flex-col h-full">
       <div className="px-3 py-3 sm:px-4 sm:py-4">
-        <WordHeader word={userWord.word} audioUrl={userWord.audioUrl} />
+        <WordHeader word={userWord.word} audioUrl={audioUrl} />
       </div>
 
       <div className="border-b border-gray-200" />
 
       <div className="flex-1 overflow-y-auto px-3 sm:px-4">
-        {userWord.meanings.map((item: Meaning, i: number) => (
+        {userWord.meanings.map((item, i: number) => (
           <section key={i} className="py-4 sm:py-5">
             <div className="w-1/3 sm:w-1/3 md:w-1/4 lg:w-1/6 mb-2">
               <PartOfSpeechPill pos={item.partOfSpeech} />

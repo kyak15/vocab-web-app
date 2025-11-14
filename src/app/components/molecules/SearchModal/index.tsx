@@ -4,10 +4,7 @@ import { getSearchedWord } from "@/app/api/word/word";
 import { Dispatch, SetStateAction, useState } from "react";
 import SearchedBookComp from "../../atoms/SearchedBookComp";
 import SearchedWordComp from "../../atoms/SearchedWordComp";
-import {
-  SearchedBook,
-  SearchedWord as SearchedWordType,
-} from "@/app/types/types";
+import { SearchedBook, DictionaryResponse } from "@/app/types/types";
 import { getSearchedBooks } from "@/app/api/book/book";
 
 type SearchModalProps = { setOpenSearch: Dispatch<SetStateAction<boolean>> };
@@ -16,7 +13,7 @@ export default function SearchModal({ setOpenSearch }: SearchModalProps) {
   const [searchType, setSearchType] = useState<"book" | "word">("book");
   const [searchValue, setSearchValue] = useState("");
   const [bookResults, setBookResults] = useState<SearchedBook[]>([]);
-  const [wordResult, setWordResult] = useState<SearchedWordType | null>(null);
+  const [wordResult, setWordResult] = useState<DictionaryResponse | null>(null);
 
   async function handleSearch() {
     if (searchType === "book") {
@@ -59,6 +56,7 @@ export default function SearchModal({ setOpenSearch }: SearchModalProps) {
             >
               Book
             </button>
+
             <button
               className={`px-2 py-1 md:px-3 rounded-md text-xs md:text-sm transition ${
                 searchType === "word"

@@ -1,31 +1,7 @@
 import { supabase } from "@/app/lib/supabaseServer";
-import {
-  DictionaryResponse,
-  SearchedWord,
-  SupaBaseError,
-} from "@/app/types/types";
+import { DictionaryResponse, SupaBaseError } from "@/app/types/types";
 
 const dictURL = process.env.NEXT_PUBLIC_WORD_URL;
-
-export function reformatDictResponse(
-  firstEntry: DictionaryResponse,
-  query: string
-) {
-  const searchedWord: SearchedWord = {
-    word: firstEntry.word,
-    audioUrl: firstEntry.phonetics?.find((p) => p.audio)?.audio,
-    meanings: firstEntry.meanings.map((meaning) => ({
-      partOfSpeech: meaning.partOfSpeech,
-      definitions: meaning.definitions.map((def) => ({
-        definition: def.definition,
-        example: def.example,
-      })),
-    })),
-    sourceUrl: `https://dictionaryapi.dev/api/v2/entries/en/${query}`,
-  };
-
-  return searchedWord;
-}
 
 export async function addWord({
   word,
@@ -83,7 +59,7 @@ export async function getWordsFromBook(id: number) {
 
 export async function getSearchedWord(
   query: string
-): Promise<SearchedWord | undefined> {
+): Promise<DictionaryResponse | undefined> {
   try {
     const fullURL = `${dictURL}${query}`;
 
@@ -100,11 +76,28 @@ export async function getSearchedWord(
 
     const firstEntry = json[0];
 
-    const searchedWord = reformatDictResponse(firstEntry, query);
-
-    return searchedWord;
+    return firstEntry;
   } catch (error: unknown) {
     console.error("Failed to fetch word search:", error);
     return undefined;
+  }
+}
+
+export async function getAllWords() {
+  try {
+    const { data, error } = await supabase.rpc("get_all_words");
+    if (error) throw new SupaBaseError("Supbase Failed to fetch all words.");
+    return {
+      success: true,
+      data,
+    };
+  } catch (error) {
+    if (error instanceof SupaBaseError) {
+      console.error("Supabase Error: ", error.message);
+    }
+    return {
+      success: false,
+      error,
+    };
   }
 }

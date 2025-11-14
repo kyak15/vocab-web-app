@@ -61,3 +61,10 @@ export interface DictionaryResponse {
     }>;
   }>;
 }
+
+export class SupaBaseError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "SupaBaseError";
+  }
+}

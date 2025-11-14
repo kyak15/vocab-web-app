@@ -19,11 +19,12 @@ export default function BookCard({
     <Link href={`/book/${id}`}>
       <div
         className={[
-          "border-2 border-black rounded-lg bg-white",
+          "border-2 border-black rounded-lg bg-gray-300",
           "p-3 sm:p-4",
           // overall layout
           "flex flex-col sm:flex-row sm:justify-between",
           "gap-3 sm:gap-4",
+          "text-black",
         ].join(" ")}
       >
         <div className="flex w-full sm:w-auto items-start gap-3 sm:gap-4">

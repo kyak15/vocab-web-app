@@ -1,6 +1,6 @@
 "use client";
 
-import { getSearchedBooks, getSearchedWord } from "@/app/utils/helpers/helpers";
+import { getSearchedWord } from "@/app/api/word/word";
 import { Dispatch, SetStateAction, useState } from "react";
 import SearchedBookComp from "../../atoms/SearchedBookComp";
 import SearchedWordComp from "../../atoms/SearchedWordComp";
@@ -8,6 +8,7 @@ import {
   SearchedBook,
   SearchedWord as SearchedWordType,
 } from "@/app/types/types";
+import { getSearchedBooks } from "@/app/api/book/book";
 
 type SearchModalProps = { setOpenSearch: Dispatch<SetStateAction<boolean>> };
 
@@ -23,6 +24,7 @@ export default function SearchModal({ setOpenSearch }: SearchModalProps) {
       setBookResults(data ?? []);
       setWordResult(null); // clear tab data
     } else {
+      console.log(searchValue);
       const data = await getSearchedWord(searchValue);
       setWordResult(data ?? null);
       setBookResults([]); // clear tab data

@@ -1,6 +1,6 @@
 import { SavedBook, SearchedBook } from "@/app/types/types";
 import BookImage from "../BookImage";
-import { addBook } from "@/app/utils/helpers/helpers";
+import { addBook } from "@/app/api/book/book";
 
 export default function SearchedBookComp(props: SearchedBook) {
   const { id, author, thumbnail, title, desc } = props;

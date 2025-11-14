@@ -2,9 +2,10 @@
 
 import BookOrganism from "@/app/components/organisms/BookOrganism";
 import { SavedBook, SavedWord } from "@/app/types/types";
-import { getBookById, getWordsFromBook } from "@/app/utils/helpers/helpers";
+import { getBookById } from "@/app/api/book/book";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getWordsFromBook } from "@/app/api/word/word";
 
 export default function Page() {
   const { id } = useParams<{ id: string }>();

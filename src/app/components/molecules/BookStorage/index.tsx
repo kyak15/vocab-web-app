@@ -26,7 +26,7 @@ export default function BookStorage() {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex flex-col h-full px-12 gap-y-12">
+      <div className="flex flex-col h-full px-4 gap-y-12">
         {data.slice(pageNumber, pageNumber + 3).map((book) => (
           <BookCard key={book.id} {...book} />
         ))}

@@ -1,7 +1,7 @@
 import { SavedBook, SavedWord } from "@/app/types/types";
 
-import SavedWordCard from "../../molecules/SavedWordCard";
 import SavedBookHeader from "../../molecules/SavedBookHeader";
+import WordsGrid from "../../molecules/WordsGrid";
 
 type BookOrganismProps = {
   book: SavedBook;
@@ -18,9 +18,8 @@ export default function BookOrganism({ book, words }: BookOrganismProps) {
         words={words}
         word_count={book.word_count}
       />
-
-      <div className="flex flex-col items-start mx-12 h-full ">
-        <SavedWordCard words={words} />
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
+        <WordsGrid displayWords={words} />
       </div>
     </div>
   );

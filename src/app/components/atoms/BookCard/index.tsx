@@ -20,7 +20,7 @@ export default function BookCard({
       <div
         className={[
           "border-2 border-black rounded-lg bg-gray-300",
-          "p-3 sm:p-4",
+          "p-2 sm:p-4",
           // overall layout
           "flex flex-col sm:flex-row sm:justify-between",
           "gap-3 sm:gap-4",
@@ -36,7 +36,7 @@ export default function BookCard({
             </div>
             <div className="text-sm sm:text-base text-gray-700">{author}</div>
 
-            <div className="mt-1 text-sm sm:text-base text-gray-600">
+            <div className="mt-1 text-xs sm:text-base text-gray-600">
               3 Words Learned • {word_count} Words Saved
             </div>
 

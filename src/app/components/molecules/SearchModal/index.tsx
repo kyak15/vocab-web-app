@@ -4,10 +4,7 @@ import { getSearchedWord } from "@/app/api/word/word";
 import { Dispatch, SetStateAction, useState } from "react";
 import SearchedBookComp from "../../atoms/SearchedBookComp";
 import SearchedWordComp from "../../atoms/SearchedWordComp";
-import {
-  SearchedBook,
-  SearchedWord as SearchedWordType,
-} from "@/app/types/types";
+import { SearchedBook, DictionaryResponse } from "@/app/types/types";
 import { getSearchedBooks } from "@/app/api/book/book";
 
 type SearchModalProps = { setOpenSearch: Dispatch<SetStateAction<boolean>> };
@@ -16,7 +13,7 @@ export default function SearchModal({ setOpenSearch }: SearchModalProps) {
   const [searchType, setSearchType] = useState<"book" | "word">("book");
   const [searchValue, setSearchValue] = useState("");
   const [bookResults, setBookResults] = useState<SearchedBook[]>([]);
-  const [wordResult, setWordResult] = useState<SearchedWordType | null>(null);
+  const [wordResult, setWordResult] = useState<DictionaryResponse | null>(null);
 
   async function handleSearch() {
     if (searchType === "book") {
@@ -47,10 +44,10 @@ export default function SearchModal({ setOpenSearch }: SearchModalProps) {
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 text-black">
       <div className="relative bg-white rounded-xl shadow-2xl w-[90%] max-w-md h-[75%] flex flex-col p-4">
-        <div className="flex items-center gap-3 w-full mb-4">
-          <div className="flex gap-2">
+        <div className="flex items-center gap-2 md:gap-3 w-full mb-4 min-w-0">
+          <div className="flex gap-1.5 md:gap-2 shrink-0">
             <button
-              className={`px-3 py-1 rounded-md text-sm transition ${
+              className={`px-2 py-1 md:px-3 rounded-md text-xs md:text-sm transition ${
                 searchType === "book"
                   ? "bg-[#104152] text-white"
                   : "bg-gray-200 text-gray-700"
@@ -61,7 +58,7 @@ export default function SearchModal({ setOpenSearch }: SearchModalProps) {
             </button>
 
             <button
-              className={`px-3 py-1 rounded-md text-sm transition ${
+              className={`px-2 py-1 md:px-3 rounded-md text-xs md:text-sm transition ${
                 searchType === "word"
                   ? "bg-[#104152] text-white"
                   : "bg-gray-200 text-gray-700"
@@ -76,15 +73,15 @@ export default function SearchModal({ setOpenSearch }: SearchModalProps) {
           <input
             type="text"
             placeholder={`Search ${searchType}...`}
-            className="flex-1 border border-gray-300 rounded-lg px-3 py-1.5 
-                       focus:outline-none focus:ring-2 focus:ring-[#104152]"
+            className="flex-1 min-w-0 border border-gray-300 rounded-lg px-2 py-1.5 md:px-3 
+                       focus:outline-none focus:ring-2 focus:ring-[#104152] text-sm"
             onChange={(e) => setSearchValue(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
           />
 
           <button
             onClick={() => setOpenSearch(false)}
-            className="text-gray-500 hover:text-gray-700 rounded-full p-1 transition"
+            className="text-gray-500 hover:text-gray-700 rounded-full p-1 transition shrink-0"
           >
             ✕
           </button>
